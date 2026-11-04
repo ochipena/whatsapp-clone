@@ -76,11 +76,26 @@ app.get('/Chats', async function(req,res){
 app.get('/Mensajes', async function(req,res){
     console.log(req.query) 
     const respuesta = await MySQL.realizarQuery(`
-    SELECT * FROM Mensajes;
-    `)
+    SELECT contenido, nombre_usuario 
+    FROM Mensajes as m
+    INNER JOIN usuarios as u ON m.id_usuario = u.id_usuario
+    WHERE m.id_chat = ?
+    ORDER BY m.fecha ASC;
+    `, [req.query.id_chat])
     res.send(respuesta)
 })
 
+app.post('/EnviarMensaje', async function(req,res){
+    try {
+        await MySQL.realizarQuery(
+            `INSERT INTO Mensajes (id_chat, id_usuario, contenido) VALUES (?, ?, ?)`,
+            [req.body.id_chat, req.body.id_usuario, req.body.contenido]
+        )
+        res.send({ ok: true })
+    } catch (err) {
+        res.status(500).send({ ok: false, error: err.code })
+    }
+})
 
 app.post('/InsertarContactos', async function(req,res) {
     console.log(req.body) 
@@ -188,11 +203,8 @@ app.post('/validarUsuario', async (req, res) => {
     });
 
     socket.on('sendMessage', data => {
-        console.log("sala: ", data.room)
-        console.log("sala: ", data.message)
-        io.to(data.room).emit('newMessage', {message: data.message});
-        console.log("mandaste este mensaje: ", data.message)
-    });
+		io.to(req.session.room).emit('newMessage', { room: req.session.room, message: data });
+	});
 
     socket.on('disconnect', () => {
         console.log("Disconnect");
