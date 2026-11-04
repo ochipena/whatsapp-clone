@@ -54,6 +54,18 @@ export default function home({}) {
 
     },[messages]);
 
+    useEffect(() =>{
+        if (!messages){
+            console.log("No se mando ningun mensaje");
+            return;
+        }
+
+        console.log(messages);
+
+
+
+    },[messages]);
+
     function handleSendMessage() {
         const roomName = "boca"; // El nombre de la sala debe coincidir con el del componente de contactos
         if (message.trim() === "") return;
