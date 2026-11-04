@@ -1,6 +1,4 @@
 "use client"
-
-import clsx from "clsx"
 import styles from "./button.module.css"
 export default function Button({ onClick, text }) {
     return (

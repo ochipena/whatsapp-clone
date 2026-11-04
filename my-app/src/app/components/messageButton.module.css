@@ -1,0 +1,17 @@
+.mensaje{
+    height: auto;
+    max-height: 500px;
+    width: auto;
+    max-width: 300px;
+    background-color: rgb(38, 63, 38);
+    border-radius: 7px;
+    padding: 7px;
+    align-content: center;
+    margin:12px;
+    align-self: flex-end;
+
+}
+
+.texto{
+    color: white;
+}

@@ -2,5 +2,14 @@
     font-size: 22px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.wpp {
     margin-left: 30px;
+}
+
+.login{
+    font-size: 40px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
 }

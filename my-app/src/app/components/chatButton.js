@@ -1,20 +1,24 @@
-import Image from "next/image"
+
 import styles from "./chatButton.module.css"
-export default function Chatbutton({contacto,ultimoMensaje,srcImg,alt}) {
+import clsx from "clsx"
+export default function Chatbutton({contacto,srcImg,alt,variant,onClick}) {
     return(
-        <div className={styles.chatButton} >
+        <div className={clsx((styles.chatButton),{
+            [styles.barraButton]: variant === "barra"
+        })} onClick={onClick}>
             <div>
-                <Image
-                    src={srcImg}
+                <img
+                    src={`/images/${srcImg}`}
                     width={50}
                     height={50}
                     alt={alt}
-                    className={styles.img}
+                    className={clsx((styles.img),{
+                        [styles.imgBarra]: variant === "barra"
+                    })}
                 />
             </div>
             <div className={styles.div}>
                 <h2 className={styles.h2}>{contacto}</h2>
-                <p className={styles.p}>{ultimoMensaje}</p>
             </div>
         </div>
     )

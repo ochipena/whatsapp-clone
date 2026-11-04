@@ -5,6 +5,22 @@
     border-radius: 5px;
     width: 90%;
     height: 30px;
+    font-size: 15px;
+    padding:5px;
+}
+
+.inputBuscar{
     margin-left: 19px;
+}
+
+.inputEscribir{
+    background-color: #333d44;
+    color:#8696a0;
+    border:solid 0px;
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    margin-left: 40px;
+    margin-top: 19px;
     font-size: 15px;
 }
